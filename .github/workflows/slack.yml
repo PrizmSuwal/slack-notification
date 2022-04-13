@@ -16,7 +16,7 @@ jobs:
           SLACK_COLOR:  '#000080'
           SLACK_MESSAGE: 'Triggered By: ${{ github.actor }}'
           SLACK_TITLE: GitHub Action
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           
   sucess-notification:
     runs-on: ubuntu-latest
@@ -53,7 +53,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
-          SLACK_COLOR: '#000'
+          SLACK_COLOR: 'bad'
           SLACK_MESSAGE: 'Deploying ${{ github.event.client_payload.ref }} branch to ${{ github.event.client_payload.environment }} | Triggered By: ${{ github.actor }}'
           SLACK_TITLE: Failed
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
