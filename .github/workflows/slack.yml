@@ -13,6 +13,6 @@ jobs:
         env:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
           SLACK_COLOR: '#000080'
-          SLACK_MESSAGE: 'Deploying ${{ github.event.client_payload.ref }} branch to ${{ github.event.client_payload.environment }}'
+          SLACK_MESSAGE: 'Deploying'
           SLACK_TITLE: GitHub Action Triggered By ${{ github.actor }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
