@@ -16,10 +16,10 @@ jobs:
           SLACK_COLOR:  '#000080'
           SLACK_MESSAGE: 'Deploy Triggered By: ${{ github.actor }}'
           SLACK_TITLE: GitHub Action
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_FOOTER: ' '
           
-  sucess-notification:
+  success-notification:
     runs-on: ubuntu-latest
     needs: slack
     if: ${{ success() }}
