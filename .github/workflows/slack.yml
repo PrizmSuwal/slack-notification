@@ -15,4 +15,4 @@ jobs:
         uses: act10ns/slack@v1
         with: 
           status: 'In progress'
-          channel: '#project-io-deploy'
+          channel: '#Prism Suwal'
