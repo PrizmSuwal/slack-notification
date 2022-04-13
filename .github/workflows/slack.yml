@@ -14,8 +14,8 @@ jobs:
         env:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
           SLACK_COLOR:  '#000080'
-          SLACK_MESSAGE: 'Deploy Triggered By: ${{ github.actor }}'
-          SLACK_TITLE: GitHub Action
+          SLACK_MESSAGE: 'Deploying ${{ github.event.client_payload.ref }} branch to ${{ github.event.client_payload.environment }}'
+          SLACK_TITLE: 'GitHub Action | Triggered By: ${{ github.actor }}'
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_FOOTER: ' '
           
@@ -35,8 +35,8 @@ jobs:
         env:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
           SLACK_COLOR: 'good'
-          SLACK_MESSAGE: 'Deploying ${{ github.event.client_payload.ref }} branch to ${{ github.event.client_payload.environment }} | Triggered By: ${{ github.actor }}'
-          SLACK_TITLE: Successful
+          SLACK_MESSAGE: 'Deploying ${{ github.event.client_payload.ref }} branch to ${{ github.event.client_payload.environment }}'
+          SLACK_TITLE: 'Successful | Triggered By: ${{ github.actor }}'
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_FOOTER: ' '
           
@@ -56,7 +56,7 @@ jobs:
         env:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
           SLACK_COLOR: '#FF5733'
-          SLACK_MESSAGE: 'Deploying ${{ github.event.client_payload.ref }} branch to ${{ github.event.client_payload.environment }} | Triggered By: ${{ github.actor }}'
-          SLACK_TITLE: Failed
+          SLACK_MESSAGE: 'Deploying ${{ github.event.client_payload.ref }} branch to ${{ github.event.client_payload.environment }}'
+          SLACK_TITLE: 'Failed | Triggered By: ${{ github.actor }}'
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_FOOTER: ' '
