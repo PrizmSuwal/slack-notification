@@ -26,25 +26,22 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.event.client_payload.ref }}
+          
+      - name: Exit success
+        if: ${{ success() }}
+        run: exit 0
+
+      - name: Exit Failure
+        if: ${{ failure() }}
+        run: exit 1
         
       - name: Notify Successful Status
-        if: ${{ success() }}
+        if: always()
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
           SLACK_COLOR: ${{ job.status }}
           SLACK_MESSAGE: 'Deploying ${{ github.event.client_payload.ref }} branch to ${{ github.event.client_payload.environment }} | Triggered By: ${{ github.actor }}'
-          SLACK_TITLE: Successful
+          SLACK_TITLE: ${{ job.status }}
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-      
-      - name: Notify Failed Status
-        if: ${{ failure() }}
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
-          SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE: 'Deploying ${{ github.event.client_payload.ref }} branch to ${{ github.event.client_payload.environment }} | Triggered By: ${{ github.actor }}'      
-          SLACK_TITLE: Failure
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
-      
         
