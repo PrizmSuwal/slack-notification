@@ -1,0 +1,18 @@
+name: slack-notification
+
+on:
+  push
+
+jobs:
+  slack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Notify Slack
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
+          SLACK_COLOR: '#000080'
+          SLACK_MESSAGE: 'Deploying ${{ github.event.client_payload.ref }} branch to ${{ github.event.client_payload.environment }}'
+          SLACK_TITLE: GitHub Action Triggered By ${{ github.actor }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
