@@ -16,7 +16,7 @@ jobs:
           SLACK_COLOR:  '#000080'
           SLACK_MESSAGE: 'Deploy Triggered By: ${{ github.actor }}'
           SLACK_TITLE: GitHub Action
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           
   sucess-notification:
     runs-on: ubuntu-latest
@@ -36,7 +36,7 @@ jobs:
           SLACK_COLOR: 'good'
           SLACK_MESSAGE: 'Deploying ${{ github.event.client_payload.ref }} branch to ${{ github.event.client_payload.environment }} | Triggered By: ${{ github.actor }}'
           SLACK_TITLE: Successful
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           
   failure-notification:
     runs-on: ubuntu-latest
