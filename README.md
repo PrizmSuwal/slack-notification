@@ -1,2 +1,2 @@
 # slack-notification
-Notify slack whenever deployment action is triggered
+Notify slack whenever push action is triggered
