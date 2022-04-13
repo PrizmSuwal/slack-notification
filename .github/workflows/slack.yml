@@ -18,6 +18,7 @@ jobs:
           SLACK_TITLE: Action
           SLACK_USERNAME: Project-IO GitHub Actions
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_FOOTER: Powered By GitHub Actions
           
   sucess-notification:
     runs-on: ubuntu-latest
@@ -39,6 +40,7 @@ jobs:
           SLACK_TITLE: Successful
           SLACK_USERNAME: Project-IO GitHub Actions
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_FOOTER: Powered By GitHub Actions
           
   failure-notification:
     runs-on: ubuntu-latest
@@ -60,3 +62,4 @@ jobs:
           SLACK_TITLE: Failed
           SLACK_USERNAME: Project-IO GitHub Actions
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_FOOTER: Powered By GitHub Actions
