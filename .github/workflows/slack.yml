@@ -14,5 +14,5 @@ jobs:
       - name: Notify Slack
         uses: act10ns/slack@v1
         with: 
-          status: 'in progress'
+          status: 'In progress'
           channel: '#project-io-deploy'
