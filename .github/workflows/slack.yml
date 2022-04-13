@@ -6,8 +6,6 @@ on:
 jobs:
   slack:
     runs-on: ubuntu-latest
-    env:
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     
     steps:
       - uses: actions/checkout@v2
@@ -18,7 +16,7 @@ jobs:
           SLACK_COLOR:  '#000080'
           SLACK_MESSAGE: 'Triggered By: ${{ github.actor }}'
           SLACK_TITLE: GitHub Action
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           
   status-notification:
     runs-on: ubuntu-latest
