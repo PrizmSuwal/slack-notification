@@ -16,7 +16,7 @@ jobs:
           SLACK_COLOR:  '#000080'
           SLACK_MESSAGE: 'Triggered By: ${{ github.actor }}'
           SLACK_TITLE: GitHub Action
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           
   sucess-notification:
     runs-on: ubuntu-latest
