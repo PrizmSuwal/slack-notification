@@ -6,17 +6,45 @@ on:
 jobs:
   slack:
     runs-on: ubuntu-latest
-    env:
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     
     steps:
       - uses: actions/checkout@v2
       - name: Notify Slack
-        uses: act10ns/slack@v1
+        uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
-          SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
-          SLACK_ICON: https://github.com/rtCamp.png?size=48
+          SLACK_COLOR:  '#000080'
           SLACK_MESSAGE: 'Triggered By: ${{ github.actor }}'
           SLACK_TITLE: GitHub Action
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          
+  status-notification:
+    runs-on: ubuntu-latest
+    needs: slack
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.client_payload.ref }}
+        
+      - name: Notify Deployed Status
+        uses: rtCamp/action-slack-notify@v2
+        
+      - name: Exit Success
+        if: ${{ success() }}
+        env:
+          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_MESSAGE: 'Deploying ${{ github.event.client_payload.ref }} branch to ${{ github.event.client_payload.environment }} | Triggered By: ${{ github.actor }}'
+          SLACK_TITLE: Successful
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+        
+      - name: Exit Failure
+        if: ${{ failure() }}
+        env:
+          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
+          SLACK_COLOR: ${{ job.status }}
+          SLACK_MESSAGE: 'Deploying ${{ github.event.client_payload.ref }} branch to ${{ github.event.client_payload.environment }} | Triggered By: ${{ github.actor }}'
+          SLACK_TITLE: Failure
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
+          
