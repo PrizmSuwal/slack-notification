@@ -35,7 +35,7 @@ jobs:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
           SLACK_COLOR: 'good'
           SLACK_MESSAGE: 'Deploying ${{ github.event.client_payload.ref }} branch to ${{ github.event.client_payload.environment }} | Triggered By: ${{ github.actor }}'
-          SLACK_TITLE: Successful
+          SLACK_TITLE: GitHub Action | Successful
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           
   failure-notification:
@@ -55,5 +55,5 @@ jobs:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
           SLACK_COLOR: '#FF5733'
           SLACK_MESSAGE: 'Deploying ${{ github.event.client_payload.ref }} branch to ${{ github.event.client_payload.environment }} | Triggered By: ${{ github.actor }}'
-          SLACK_TITLE: Failed
+          SLACK_TITLE: GitHub Action | Failed
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
