@@ -6,13 +6,13 @@ on:
 jobs:
   slack:
     runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    
     steps:
       - uses: actions/checkout@v2
       - name: Notify Slack
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
-          SLACK_COLOR: '#000080'
-          SLACK_MESSAGE: 'Deploying'
-          SLACK_TITLE: GitHub Action Triggered By ${{ github.actor }}
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+        uses: act10ns/slack@v1
+        with: 
+          status: 'in progress'
+          channel: '#project-io-deploy'
